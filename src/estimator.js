@@ -32,9 +32,9 @@ const infectionsByTime = (currentlyInfected, periodType, timeToElapse) => {
   return currentlyInfected * (2 ** (Math.floor(days / 3)));
 };
 
-const percentOfInfectection = (infectionsByRequestedTime) => ((15 / 100) * infectionsByRequestedTime);
+const percentOfInfectection = (infectionsByRequestedTime) => Math.round((15 / 100) * infectionsByRequestedTime);
 
-const availableBeds = (totalBeds, severeCases) => Math.floor(totalBeds - severeCases);
+const availableBeds = (totalBeds, severeCases) => totalBeds - severeCases;
 
 const covid19ImpactEstimator = (data) => {
   const impact = {};
