@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable max-len */
 // let data = {
 //   region: {
@@ -21,20 +22,20 @@ const infected = (reportedCases, x) => reportedCases * x;
 const infectionsByTime = (currentlyInfected, periodType, timeToElapse) => {
   let days;
 
-  if (periodType === 'months') {
+  if (periodType == 'months') {
     days = timeToElapse * 30;
-  } else if (periodType === 'weeks') {
+  } else if (periodType == 'weeks') {
     days = timeToElapse * 7;
-  } else if (periodType === 'days') {
+  } else if (periodType == 'days') {
     days = timeToElapse;
   }
 
   return currentlyInfected * (2 ** (Math.floor(days / 3)));
 };
 
-const percentOfInfectection = (infectionsByRequestedTime) => Math.round((15 / 100) * infectionsByRequestedTime);
+const percentOfInfectection = (infectionsByRequestedTime) => ((15 / 100) * infectionsByRequestedTime);
 
-const availableBeds = (totalBeds, severeCases) => totalBeds - severeCases;
+const availableBeds = (totalBeds, severeCases) => Math.round(totalBeds - severeCases);
 
 const covid19ImpactEstimator = (data) => {
   const impact = {};
