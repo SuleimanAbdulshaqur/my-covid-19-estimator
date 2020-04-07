@@ -20,4 +20,7 @@ module.exports = {
     "comma-dangle": ["error", "never"],
     "no-param-reassign": ["error", { "props": false }]
   },
+  rules:{
+    "linebreak-style": 0
+  }
 };
