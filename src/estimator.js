@@ -13,8 +13,9 @@
 //   totalHospitalBeds: 1380614,
 // };
 
+// work for challenge 2
 
-// work for challenge 1
+
 const infected = (reportedCases, x) => reportedCases * x;
 
 const infectionsByTime = (currentlyInfected, periodType, timeToElapse) => {
@@ -31,10 +32,14 @@ const infectionsByTime = (currentlyInfected, periodType, timeToElapse) => {
   return currentlyInfected * (2 ** (Math.floor(days / 3)));
 };
 
+const percentOfInfectection = (infectionsByRequestedTime) => Math.floor((15 / 100) * infectionsByRequestedTime);
+
+const availableBeds = (totalBeds, severeCases) => totalBeds - severeCases;
+
 const covid19ImpactEstimator = (data) => {
   const impact = {};
   const severeImpact = {};
-
+  // Challenge 1
   // reported cases * 10 as currentlyInfected in impact
   impact.currentlyInfected = infected(data.reportedCases, 10);
   // reported cases * 50 as currentlyInfected in severeImpact
@@ -43,6 +48,15 @@ const covid19ImpactEstimator = (data) => {
   // currentlyInfected for both cases * 2^factor for both imp and sevImp
   impact.infectionsByRequestedTime = infectionsByTime(impact.currentlyInfected, data.periodType, data.timeToElapse);
   severeImpact.infectionsByRequestedTime = infectionsByTime(severeImpact.currentlyInfected, data.periodType, data.timeToElapse);
+
+  // Challenge 2
+  // 15% of infectionbyreqtime as severeCasesByRequestedTime for both
+  impact.severeCasesByRequestedTime = percentOfInfectection(impact.infectionsByRequestedTime);
+  severeImpact.severeCasesByRequestedTime = percentOfInfectection(severeImpact.infectionsByRequestedTime);
+
+  // hospitalBedsByRequestedTime = Hospitalbeds - sevCasebyReq
+  impact.hospitalBedsByRequestedTime = availableBeds(data.totalHospitalBeds, impact.severeCasesByRequestedTime);
+  severeImpact.hospitalBedsByRequestedTime = availableBeds(data.totalHospitalBeds, severeImpact.severeCasesByRequestedTime);
 
   return {
     data,
