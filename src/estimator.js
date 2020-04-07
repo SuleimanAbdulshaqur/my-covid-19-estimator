@@ -47,8 +47,8 @@ const dollarGone = (infectionsByRequestedTime, dailyInc, incPop, periodType, tim
     days = timeToElapse * 30;
   } else if (periodType == 'weeks') {
     days = timeToElapse * 7;
-  } else if (periodType == 'days') {
-    days = timeToElapse;
+  } else {
+    days = Math.round(timeToElapse);
   }
 
   return infectionsByRequestedTime * dailyInc * incPop * days;
