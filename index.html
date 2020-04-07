@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid 19 Estimator Data Input</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div class="background">
+        <div class="logo">
+            <h1>COVID 19 DATA INPUT</h1>
+        </div>
+        <div class="card">
+            <div class="header">
+                <h3>Pass in data for the Covid 19 Estimator function</h3>
+            </div>
+
+            <form action="">
+                <div class="container">
+                    <div class="form-group">
+                        <label class="form-label" for="region">Region</label>
+                        <input list="region" class="form-input data-region" placeholder="Click to Select" required>
+                        <datalist id="region">
+                            <option value="Africa">
+                            <option value="Asia">
+                            <option value="Caribbean">
+                            <option value="Central America">
+                            <option value="Europe">
+                            <option value="North America">
+                            <option value="Oceania">
+                            <option value="South America">
+                        </datalist>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="country">Country</label>
+                        <input class="form-input data-country" type="text" placeholder="Country" name="country" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="population">Population</label>
+                        <input class="form-input data-population" type="number" placeholder="Population" name="population" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="time-to-elapse">Time to Elapse (in days, weeks or months)</label>
+                        <input class="form-input data-time-to-elapse" type="number" placeholder="Time to Elapse" name="time-to-elapse" required aria-required="true">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="period-type">Period type (Days, weeks or months)</label>
+                        <input list="period-type" class="form-input data-period-type" placeholder="Click to Select" required aria-required="true">
+                        <datalist id="period-type">
+                            <option value="days">
+                            <option value="weeks">
+                            <option value="months">
+                        </datalist>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="reported-cases">Reported Cases</label>
+                        <input class="form-input data-reported-cases" type="number" placeholder="Reported Cases" name="reported-cases" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="total-hospital-beds">Total Hospital Beds</label>
+                        <input class="form-input data-total-hospital-beds" type="number" placeholder="Total Hospital Beds" name="total-hospital-beds" required aria-required="true">
+                    </div>
+
+                    
+                    <div class="button">
+                        <button class="data-go-estimate">SUBMIT</button>
+                    </div>
+                    
+                </div>
+            </form>
+            
+        </div>
+    
+    </div>
+
+    <script src="src/app.js"></script>
+</body>
+</html>
