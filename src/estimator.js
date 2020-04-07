@@ -1,5 +1,6 @@
 const covid19ImpactEstimator = (data) => {
-    let input = data;
+    let put = data;
+    let house = data;
 
     return {
         data: {},
