@@ -14,7 +14,7 @@
 //   totalHospitalBeds: 1380614,
 // };
 
-// work for challenge 2
+// work for challenge 3
 
 
 const infected = (reportedCases, x) => reportedCases * x;
@@ -37,6 +37,23 @@ const percentOfInfectection = (infectionsByRequestedTime) => ((15 / 100) * infec
 
 const availableBeds = (totalBeds, severeCases) => ((35 / 100) * totalBeds) - severeCases;
 
+const fivePerc = (infectionsByRequestedTime) => ((5 / 100) * infectionsByRequestedTime);
+
+const twoPerc = (infectionsByRequestedTime) => ((2 / 100) * infectionsByRequestedTime);
+
+const dollarGone = (infectionsByRequestedTime, dailyInc, incPop, periodType, timeToElapse) => {
+  let days;
+  if (periodType == 'months') {
+    days = timeToElapse * 30;
+  } else if (periodType == 'weeks') {
+    days = timeToElapse * 7;
+  } else if (periodType == 'days') {
+    days = timeToElapse;
+  }
+
+  return infectionsByRequestedTime * dailyInc * incPop * days;
+};
+
 const covid19ImpactEstimator = (data) => {
   const impact = {};
   const severeImpact = {};
@@ -58,6 +75,18 @@ const covid19ImpactEstimator = (data) => {
   // hospitalBedsByRequestedTime = Hospitalbeds - sevCasebyReq
   impact.hospitalBedsByRequestedTime = availableBeds(data.totalHospitalBeds, impact.severeCasesByRequestedTime);
   severeImpact.hospitalBedsByRequestedTime = availableBeds(data.totalHospitalBeds, severeImpact.severeCasesByRequestedTime);
+
+  // 5% of infectionsbyreqtime as casesForICUByRequestedTime
+  impact.casesForICUByRequestedTime = fivePerc(impact.infectionsByRequestedTime);
+  severeImpact.casesForICUByRequestedTime = fivePerc(severeImpact.infectionsByRequestedTime);
+
+  // 2% of infectionsbyreqtime as casesForVentilatorsByRequestedTime
+  impact.casesForVentilatorsByRequestedTime = twoPerc(impact.infectionsByRequestedTime);
+  severeImpact.casesForVentilatorsByRequestedTime = twoPerc(severeImpact.infectionsByRequestedTime);
+
+  // dollarsInFlight = infectionsbyreqtime * avgdailyinc * avgdailyincpop * timetoelapse
+  impact.dollarsInFlight = dollarGone(impact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, data.periodType, data.timeToElapse);
+  severeImpact.dollarsInFlight = dollarGone(severeImpact.infectionsByRequestedTime, data.region.avgDailyIncomeInUSD, data.region.avgDailyIncomePopulation, data.periodType, data.timeToElapse);
 
   return {
     data,
