@@ -20,9 +20,9 @@ const percentOfInfectection = (infectionsByRequestedTime) => ((15 / 100) * infec
 
 const availableBeds = (totalBeds, severeCases) => ((35 / 100) * totalBeds) - severeCases;
 
-const fivePerc = (infectionsByRequestedTime) => ((5 / 100) * infectionsByRequestedTime);
+const fivePerc = (infectionsByRequestedTime) => ((5 / 100) * infectionsByRequestedTime).toFixed(2);
 
-const twoPerc = (infectionsByRequestedTime) => ((2 / 100) * infectionsByRequestedTime);
+const twoPerc = (infectionsByRequestedTime) => ((2 / 100) * infectionsByRequestedTime).toFixed(2);
 
 const dollarGone = (infectionsByRequestedTime, dailyInc, incPop, periodType, timeToElapse) => {
   let days;
