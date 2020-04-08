@@ -1,21 +1,21 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable max-len */
-// let data = {
-//   region: {
-//     name: 'Africa',
-//     avgAge: 19.7,
-//     avgDailyIncomeInUSD: 5,
-//     avgDailyIncomePopulation: 0.71,
-//   },
-//   periodType: 'days',
-//   timeToElapse: 58,
-//   reportedCases: 674,
-//   population: 66622705,
-//   totalHospitalBeds: 1380614,
-// };
+/* eslint-disable no-unused-vars */
+function submitForm() {
+  const data = {
+    region: {
+      name: document.querySelector('.data-region').value,
+      country: document.querySelector('.data-country').value,
+    },
+    periodType: document.querySelector('.data-period-type').value,
+    timeToElapse: document.querySelector('.data-time-to-elapse').value,
+    reportedCases: document.querySelector('.data-reported-cases').value,
+    population: document.querySelector('.data-population').value,
+    totalHospitalBeds: document.querySelector('.data-total-hospital-beds').value,
+  };
 
-// work for challenge 3
-
+  return data;
+}
 
 const infected = (reportedCases, x) => reportedCases * x;
 
@@ -94,5 +94,11 @@ const covid19ImpactEstimator = (data) => {
     severeImpact,
   };
 };
+
+document.querySelector('.data-go-estimate').addEventListener('click', (e) => {
+  e.preventDefault();
+  covid19ImpactEstimator(submitForm());
+  // console.log(submitForm());
+});
 
 export default covid19ImpactEstimator;
