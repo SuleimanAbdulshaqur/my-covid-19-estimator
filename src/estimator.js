@@ -9,7 +9,7 @@ const infectionsByTime = (currentlyInfected, periodType, timeToElapse) => {
     days = timeToElapse * 30;
   } else if (periodType === 'weeks') {
     days = timeToElapse * 7;
-  } else if (periodType === 'days') {
+  } else {
     days = timeToElapse;
   }
 
@@ -30,11 +30,11 @@ const dollarGone = (infectionsByRequestedTime, dailyInc, incPop, periodType, tim
     days = timeToElapse * 30;
   } else if (periodType === 'weeks') {
     days = timeToElapse * 7;
-  } else if (periodType === 'days') {
+  } else {
     days = timeToElapse;
   }
 
-  return (infectionsByRequestedTime * dailyInc * incPop * days).toFixed(2);
+  return infectionsByRequestedTime * dailyInc * incPop * days;
 };
 
 const covid19ImpactEstimator = (data) => {
