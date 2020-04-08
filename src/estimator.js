@@ -20,9 +20,9 @@ const percentOfInfectection = (infectionsByRequestedTime) => ((15 / 100) * infec
 
 const availableBeds = (totalBeds, severeCases) => ((35 / 100) * totalBeds) - severeCases;
 
-const fivePerc = (infectionsByRequestedTime) => ((5 / 100) * infectionsByRequestedTime).toFixed(2);
+const fivePerc = (infectionsByRequestedTime) => ((5 / 100) * infectionsByRequestedTime);
 
-const twoPerc = (infectionsByRequestedTime) => ((2 / 100) * infectionsByRequestedTime).toFixed(2);
+const twoPerc = (infectionsByRequestedTime) => ((2 / 100) * infectionsByRequestedTime);
 
 const dollarGone = (infectionsByRequestedTime, dailyInc, incPop, periodType, timeToElapse) => {
   let days;
@@ -34,7 +34,7 @@ const dollarGone = (infectionsByRequestedTime, dailyInc, incPop, periodType, tim
     days = timeToElapse;
   }
 
-  return infectionsByRequestedTime * dailyInc * incPop * days;
+  return (infectionsByRequestedTime * dailyInc * incPop * days).toFixed(2);
 };
 
 const covid19ImpactEstimator = (data) => {
