@@ -5,11 +5,11 @@ const infected = (reportedCases, x) => reportedCases * x;
 const infectionsByTime = (currentlyInfected, periodType, timeToElapse) => {
   let days;
 
-  if (periodType == 'months') {
+  if (periodType === 'months') {
     days = timeToElapse * 30;
-  } else if (periodType == 'weeks') {
+  } else if (periodType === 'weeks') {
     days = timeToElapse * 7;
-  } else if (periodType == 'days') {
+  } else if (periodType === 'days') {
     days = timeToElapse;
   }
 
@@ -26,12 +26,12 @@ const twoPerc = (infectionsByRequestedTime) => ((2 / 100) * infectionsByRequeste
 
 const dollarGone = (infectionsByRequestedTime, dailyInc, incPop, periodType, timeToElapse) => {
   let days;
-  if (periodType == 'months') {
+  if (periodType === 'months') {
     days = timeToElapse * 30;
-  } else if (periodType == 'weeks') {
+  } else if (periodType === 'weeks') {
     days = timeToElapse * 7;
-  } else {
-    days = Math.round(timeToElapse);
+  } else if (periodType === 'days') {
+    days = timeToElapse;
   }
 
   return infectionsByRequestedTime * dailyInc * incPop * days;
